@@ -905,28 +905,40 @@ void FieldBase::SetFLOAT64Value(const FIT_FLOAT64 value, const FIT_UINT8 fieldAr
     switch (GetType()) { // Note: This checks the type of the MAIN field since data is aligned according to that type
         case FIT_BASE_TYPE_BYTE:
         case FIT_BASE_TYPE_ENUM:
-        case FIT_BASE_TYPE_SINT8:
         case FIT_BASE_TYPE_UINT8:
         case FIT_BASE_TYPE_UINT8Z:
             SetUINT8Value((FIT_UINT8) roundedValue, fieldArrayIndex);
             break;
 
-        case FIT_BASE_TYPE_SINT16:
+        case FIT_BASE_TYPE_SINT8:
+            SetSINT8Value((FIT_SINT8) roundedValue, fieldArrayIndex);
+            break;
+
         case FIT_BASE_TYPE_UINT16:
         case FIT_BASE_TYPE_UINT16Z:
             SetUINT16Value((FIT_UINT16) roundedValue, fieldArrayIndex);
             break;
 
-        case FIT_BASE_TYPE_SINT32:
+        case FIT_BASE_TYPE_SINT16:
+            SetSINT16Value((FIT_SINT16) roundedValue, fieldArrayIndex);
+            break;
+
         case FIT_BASE_TYPE_UINT32:
         case FIT_BASE_TYPE_UINT32Z:
             SetUINT32Value((FIT_UINT32) roundedValue, fieldArrayIndex);
             break;
 
-        case FIT_BASE_TYPE_SINT64:
+        case FIT_BASE_TYPE_SINT32:
+            SetSINT32Value((FIT_SINT32) roundedValue, fieldArrayIndex);
+            break;
+
         case FIT_BASE_TYPE_UINT64:
         case FIT_BASE_TYPE_UINT64Z:
             SetUINT64Value((FIT_UINT64) roundedValue, fieldArrayIndex);
+            break;
+
+        case FIT_BASE_TYPE_SINT64:
+            SetSINT64Value((FIT_SINT64) roundedValue, fieldArrayIndex);
             break;
 
         case FIT_BASE_TYPE_FLOAT32:
