@@ -735,29 +735,29 @@ void FieldBase::AddRawValue(const FIT_FLOAT64 rawValue, const FIT_UINT8 fieldArr
         case FIT_BASE_TYPE_ENUM:
         case FIT_BASE_TYPE_UINT8:
         case FIT_BASE_TYPE_UINT8Z:
-            SetUINT8Value((FIT_UINT8)roundedValue, fieldArrayIndex);
+            SetUINT8Value(static_cast<FIT_UINT8>(roundedValue), fieldArrayIndex);
             break;
 
         case FIT_BASE_TYPE_SINT8:
-            SetSINT8Value((FIT_SINT8)roundedValue, fieldArrayIndex);
+            SetSINT8Value(static_cast<FIT_SINT8>(roundedValue), fieldArrayIndex);
             break;
 
         case FIT_BASE_TYPE_UINT16:
         case FIT_BASE_TYPE_UINT16Z:
-            SetUINT16Value((FIT_UINT16)roundedValue, fieldArrayIndex);
+            SetUINT16Value(static_cast<FIT_UINT16>(roundedValue), fieldArrayIndex);
             break;
 
         case FIT_BASE_TYPE_SINT16:
-            SetSINT16Value((FIT_SINT16)roundedValue, fieldArrayIndex);
+            SetSINT16Value(static_cast<FIT_SINT16>(roundedValue), fieldArrayIndex);
             break;
 
         case FIT_BASE_TYPE_UINT32:
         case FIT_BASE_TYPE_UINT32Z:
-            SetUINT32Value((FIT_UINT32)roundedValue, fieldArrayIndex);
+            SetUINT32Value(static_cast<FIT_UINT32>(roundedValue), fieldArrayIndex);
             break;
 
         case FIT_BASE_TYPE_SINT32:
-            SetSINT32Value((FIT_SINT32)roundedValue, fieldArrayIndex);
+            SetSINT32Value(static_cast<FIT_SINT32>(roundedValue), fieldArrayIndex);
             break;
 
         case FIT_BASE_TYPE_FLOAT32:
@@ -784,12 +784,12 @@ void FieldBase::AddRawValue(const FIT_FLOAT64 rawValue, const FIT_UINT8 fieldArr
         }
 
         case FIT_BASE_TYPE_SINT64:
-            SetSINT64Value((FIT_SINT64)rawValue, fieldArrayIndex);
+            SetSINT64Value(static_cast<FIT_SINT64>(rawValue), fieldArrayIndex);
             break;
 
         case FIT_BASE_TYPE_UINT64:
         case FIT_BASE_TYPE_UINT64Z:
-            SetUINT64Value((FIT_UINT64)rawValue, fieldArrayIndex);
+            SetUINT64Value(static_cast<FIT_UINT64>(rawValue), fieldArrayIndex);
             break;
 
         default:
