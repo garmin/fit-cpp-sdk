@@ -10,21 +10,21 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 
-#if !defined(FIT_DIVE_SUMMARY_MESG_LISTENER_HPP)
-#define FIT_DIVE_SUMMARY_MESG_LISTENER_HPP
+#if !defined(FIT_BATTERY_MESG_LISTENER_HPP)
+#define FIT_BATTERY_MESG_LISTENER_HPP
 
-#include "fit_dive_summary_mesg.hpp"
+#include "fit_battery_mesg.hpp"
 
 namespace fit
 {
 
-class DiveSummaryMesgListener
+class BatteryMesgListener
 {
 public:
-    virtual ~DiveSummaryMesgListener() {}
-    virtual void OnMesg(DiveSummaryMesg& mesg) = 0;
+    virtual ~BatteryMesgListener() {}
+    virtual void OnMesg(BatteryMesg& mesg) = 0;
 };
 
 } // namespace fit
 
-#endif // !defined(FIT_DIVE_SUMMARY_MESG_LISTENER_HPP)
+#endif // !defined(FIT_BATTERY_MESG_LISTENER_HPP)
