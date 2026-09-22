@@ -10,31 +10,30 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 
-#if !defined(FIT_HSA_STEP_DATA_MESG_HPP)
-#define FIT_HSA_STEP_DATA_MESG_HPP
+#if !defined(FIT_BATTERY_MESG_HPP)
+#define FIT_BATTERY_MESG_HPP
 
 #include "fit_mesg.hpp"
 
 namespace fit
 {
 
-class HsaStepDataMesg : public Mesg
+class BatteryMesg : public Mesg
 {
 public:
     class FieldDefNum final
     {
     public:
        static const FIT_UINT8 Timestamp = 253;
-       static const FIT_UINT8 ProcessingInterval = 0;
-       static const FIT_UINT8 Steps = 1;
+       static const FIT_UINT8 Capacity = 2;
        static const FIT_UINT8 Invalid = FIT_FIELD_NUM_INVALID;
     };
 
-    HsaStepDataMesg(void) : Mesg(Profile::MESG_HSA_STEP_DATA)
+    BatteryMesg(void) : Mesg(Profile::MESG_BATTERY)
     {
     }
 
-    HsaStepDataMesg(const Mesg &mesg) : Mesg(mesg)
+    BatteryMesg(const Mesg &mesg) : Mesg(mesg)
     {
     }
 
@@ -55,7 +54,6 @@ public:
 
     ///////////////////////////////////////////////////////////////////////
     // Returns timestamp field
-    // Units: s
     ///////////////////////////////////////////////////////////////////////
     FIT_DATE_TIME GetTimestamp(void) const
     {
@@ -64,7 +62,6 @@ public:
 
     ///////////////////////////////////////////////////////////////////////
     // Set timestamp field
-    // Units: s
     ///////////////////////////////////////////////////////////////////////
     void SetTimestamp(FIT_DATE_TIME timestamp)
     {
@@ -72,12 +69,12 @@ public:
     }
 
     ///////////////////////////////////////////////////////////////////////
-    // Checks the validity of processing_interval field
+    // Checks the validity of capacity field
     // Returns FIT_TRUE if field is valid
     ///////////////////////////////////////////////////////////////////////
-    FIT_BOOL IsProcessingIntervalValid() const
+    FIT_BOOL IsCapacityValid() const
     {
-        const Field* field = GetField(0);
+        const Field* field = GetField(2);
         if( FIT_NULL == field )
         {
             return FIT_FALSE;
@@ -87,70 +84,25 @@ public:
     }
 
     ///////////////////////////////////////////////////////////////////////
-    // Returns processing_interval field
-    // Units: s
-    // Comment: Processing interval length in seconds. File start: 0xFFFFFFEF File stop: 0xFFFFFFEE
+    // Returns capacity field
+    // Units: %
     ///////////////////////////////////////////////////////////////////////
-    FIT_UINT16 GetProcessingInterval(void) const
+    FIT_UINT8 GetCapacity(void) const
     {
-        return GetFieldUINT16Value(0, 0, FIT_SUBFIELD_INDEX_MAIN_FIELD);
+        return GetFieldUINT8Value(2, 0, FIT_SUBFIELD_INDEX_MAIN_FIELD);
     }
 
     ///////////////////////////////////////////////////////////////////////
-    // Set processing_interval field
-    // Units: s
-    // Comment: Processing interval length in seconds. File start: 0xFFFFFFEF File stop: 0xFFFFFFEE
+    // Set capacity field
+    // Units: %
     ///////////////////////////////////////////////////////////////////////
-    void SetProcessingInterval(FIT_UINT16 processingInterval)
+    void SetCapacity(FIT_UINT8 capacity)
     {
-        SetFieldUINT16Value(0, processingInterval, 0, FIT_SUBFIELD_INDEX_MAIN_FIELD);
-    }
-
-    ///////////////////////////////////////////////////////////////////////
-    // Returns number of steps
-    ///////////////////////////////////////////////////////////////////////
-    FIT_UINT8 GetNumSteps(void) const
-    {
-        return GetFieldNumValues(1, FIT_SUBFIELD_INDEX_MAIN_FIELD);
-    }
-
-    ///////////////////////////////////////////////////////////////////////
-    // Checks the validity of steps field
-    // Returns FIT_TRUE if field is valid
-    ///////////////////////////////////////////////////////////////////////
-    FIT_BOOL IsStepsValid(FIT_UINT8 index) const
-    {
-        const Field* field = GetField(1);
-        if( FIT_NULL == field )
-        {
-            return FIT_FALSE;
-        }
-
-        return field->IsValueValid(index);
-    }
-
-    ///////////////////////////////////////////////////////////////////////
-    // Returns steps field
-    // Units: steps
-    // Comment: Total step sum
-    ///////////////////////////////////////////////////////////////////////
-    FIT_UINT32 GetSteps(FIT_UINT8 index) const
-    {
-        return GetFieldUINT32Value(1, index, FIT_SUBFIELD_INDEX_MAIN_FIELD);
-    }
-
-    ///////////////////////////////////////////////////////////////////////
-    // Set steps field
-    // Units: steps
-    // Comment: Total step sum
-    ///////////////////////////////////////////////////////////////////////
-    void SetSteps(FIT_UINT8 index, FIT_UINT32 steps)
-    {
-        SetFieldUINT32Value(1, steps, index, FIT_SUBFIELD_INDEX_MAIN_FIELD);
+        SetFieldUINT8Value(2, capacity, 0, FIT_SUBFIELD_INDEX_MAIN_FIELD);
     }
 
 };
 
 } // namespace fit
 
-#endif // !defined(FIT_HSA_STEP_DATA_MESG_HPP)
+#endif // !defined(FIT_BATTERY_MESG_HPP)
